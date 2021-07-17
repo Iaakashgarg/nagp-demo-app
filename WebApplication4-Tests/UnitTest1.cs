@@ -32,5 +32,33 @@ namespace WebApplication4_Tests
             // Assert
             Assert.Contains("Welcome", responseString);
         }
+
+        [Fact]
+        public async Task Test2()
+        {
+            // Act
+            var response = await _client.GetAsync("/abcd");
+            var statusCode = response.IsSuccessStatusCode;
+            // Assert
+            Assert.False(statusCode);
+        }
+
+        [Fact]
+        public async Task Test3()
+        {
+            // Act
+            var response = await _client.GetAsync("/");
+            var statusCode = response.IsSuccessStatusCode;
+            // Assert
+            Assert.True(statusCode);
+        }
+
+        [Fact]
+        public void TestSum()
+        {
+            var service = new Service();
+            int result = service.Sum(10, 2);
+            Assert.True(result == 12);
+        }
     }
 }
